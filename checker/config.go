@@ -3,24 +3,32 @@ package checker
 import (
 	"time"
 
-	"github.com/leonklingele/github-release-checker/checker/github"
+	httpclient "github.com/sniperkit/github-release-checker/helper/http"
+
+	"github.com/sniperkit/github-release-checker/checker/vcs/github"
+	// "github.com/sniperkit/github-release-checker/checker/model"
 )
 
 type Config struct {
-	CheckInterval duration `toml:"interval"`
+	CheckInterval duration `json:"interval" yaml:"interval" toml:"interval"`
+	RequestDelay  duration `json:"request_delay" yaml:"request_delay" toml:"request_delay"`
 
-	DBConfig           *DBConfig           `toml:"db"`
-	RepositoriesConfig *RepositoriesConfig `toml:"repositories"`
-	GithubConfig       *github.Config      `toml:"github"`
+	TransportConfig    *httpclient.Config  `json:"http" yaml:"http" toml:"http"`
+	DBConfig           *DBConfig           `json:"db" yaml:"db" toml:"db"`
+	RepositoriesConfig *RepositoriesConfig `json:"repositories" yaml:"repositories" toml:"repositories"`
+	GithubConfig       *github.Config      `json:"github" yaml:"github" toml:"github"`
+	// BitbucketConfig       *github.Config      `json:"bitbucket" yaml:"bitbucket" toml:"bitbucket"`
+	// GitlabConfig       *github.Config      `json:"gitlab" yaml:"gitlab" toml:"gitlab"`
+	// ServiceConfig      *github.Config      `json:"services" yaml:"services" toml:"services"`
 }
 
 type DBConfig struct {
-	Path string `toml:"path"`
+	Path string `json:"path" yam;:"path" toml:"path"`
 }
 
 type RepositoriesConfig struct {
-	Ignored   []string `toml:"ignored"`
-	Important []string `toml:"important"`
+	Ignored   []string `json:"ignored" yaml:"ignored" toml:"ignored"`
+	Important []string `json:"important" yaml:"important" toml:"important"`
 }
 
 type duration struct {

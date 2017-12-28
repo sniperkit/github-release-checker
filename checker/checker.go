@@ -6,14 +6,20 @@ import (
 	"os"
 	"time"
 
-	"github.com/leonklingele/github-release-checker/checker/github"
-	"github.com/leonklingele/github-release-checker/checker/github/repository"
-	"github.com/leonklingele/github-release-checker/checker/github/tag"
-	"github.com/leonklingele/github-release-checker/checker/handlers"
-	"github.com/leonklingele/github-release-checker/logging"
-	"github.com/leonklingele/github-release-checker/pathutil"
-	"github.com/leonklingele/github-release-checker/stringutil"
+	// github - handlers
+	"github.com/sniperkit/github-release-checker/checker/vcs/github"
+	repository "github.com/sniperkit/github-release-checker/checker/vcs/github/repo"
+	"github.com/sniperkit/github-release-checker/checker/vcs/github/repo/tag"
+
+	// custom transport
+	httpclient "github.com/sniperkit/github-release-checker/helper/http"
+
+	// app
 	"github.com/pkg/errors"
+	"github.com/sniperkit/github-release-checker/checker/handlers"
+	"github.com/sniperkit/github-release-checker/helper/logging"
+	"github.com/sniperkit/github-release-checker/utils/pathutil"
+	"github.com/sniperkit/github-release-checker/utils/stringutil"
 )
 
 const (
@@ -128,10 +134,12 @@ func initDB(db *sql.DB) error {
 }
 
 func New(c *Config) (*Checker, error) {
+
 	dbp, err := pathutil.ReplaceHome(c.DBConfig.Path)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to replace home")
 	}
+
 	db, err := sql.Open("sqlite3", dbp)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to open database")
@@ -145,9 +153,19 @@ func New(c *Config) (*Checker, error) {
 		logging.Info("successfully initialized database")
 	}
 
+	gh := github.New(c.GithubConfig)
+	if c.TransportConfig.Stats || c.TransportConfig.Cache {
+		transConfig := &httpclient.Config{
+			Debug: c.TransportConfig.Debug,
+			Cache: c.TransportConfig.Cache,
+			Stats: c.TransportConfig.Stats,
+		}
+		gh = github.NewWithTransport(c.GithubConfig, httpclient.NewTransport(transConfig))
+	}
+
 	return &Checker{
 		config: c,
-		github: github.New(c.GithubConfig),
+		github: gh,
 		db:     db,
 	}, nil
 }

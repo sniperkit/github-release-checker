@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/leonklingele/github-release-checker/checker/github/tag"
+	"github.com/sniperkit/github-release-checker/checker/vcs/github/repo/tag"
 )
 
 type Handler interface {

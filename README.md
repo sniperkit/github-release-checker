@@ -8,9 +8,9 @@ Get notified on new releases of your starred & watched repos.
 
 ```sh
 # go get this repo
-go get -u github.com/leonklingele/github-release-checker
+go get -u github.com/sniperkit/github-release-checker
 # .. and cd into it
-cd $GOPATH/src/github.com/leonklingele/github-release-checker
+cd $GOPATH/src/github.com/sniperkit/github-release-checker
 
 # Install config file to $HOME/.github-release-checker/config.toml
 make config

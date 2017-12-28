@@ -1,7 +1,7 @@
 package log
 
 import (
-	"github.com/leonklingele/github-release-checker/checker/handlers"
+	"github.com/sniperkit/github-release-checker/checker/handlers"
 )
 
 const (

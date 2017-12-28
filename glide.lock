@@ -1,0 +1,74 @@
+hash: e5eb31771e3d1c7e0b3cb09da1886c0bd28db5cecad97f3806d4daa60f51f22c
+updated: 2017-12-27T17:55:25.456414702+01:00
+imports:
+- name: github.com/andybalholm/cascadia
+  version: 349dd0209470eabd9514242c688c403c0926d266
+- name: github.com/BurntSushi/toml
+  version: a368813c5e648fee92e5f6c30e3944ff9d5e8895
+- name: github.com/google/go-github
+  version: 0c3b302de2a6de84a2511db47ea1bb2ff8146830
+  subpackages:
+  - github
+- name: github.com/google/go-querystring
+  version: 53e6ce116135b80d037921a7fdd5138cf32d7a8a
+  subpackages:
+  - query
+- name: github.com/leonklingele/github-release-checker
+  version: ade5ba6cfe80228af8ff235a9d58f26ba9b1dcf2
+  subpackages:
+  - checker
+  - checker/github
+  - checker/github/repository
+  - checker/github/tag
+  - checker/handlers
+  - checker/handlers/log
+  - checker/handlers/mail
+  - config
+  - logging
+  - pathutil
+  - stringutil
+- name: github.com/mattn/go-sqlite3
+  version: d5ffb5c0cca8778699a929b236766f4a7af674e8
+- name: github.com/mmcdole/gofeed
+  version: 2e0b80655fb86031e74d2b6b8697dce3a4029228
+  subpackages:
+  - atom
+  - extensions
+  - internal/shared
+  - rss
+- name: github.com/mmcdole/goxpp
+  version: 77e4a51a73ed99ee3f33c1474dc166866304acbd
+- name: github.com/pkg/errors
+  version: e881fd58d78e04cf6d0de1217f8707c8cc2249bc
+- name: github.com/PuerkitoBio/goquery
+  version: bc4e06eb0792d1a14661d19dd7822163c25bb6bd
+- name: golang.org/x/net
+  version: d866cfc389cec985d6fda2859936a575a55a3ab6
+  subpackages:
+  - context
+  - html
+  - html/atom
+  - html/charset
+- name: golang.org/x/text
+  version: e19ae1496984b1c655b8044a65c0300a3c878dd3
+  subpackages:
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - encoding/internal
+  - encoding/internal/identifier
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - internal/tag
+  - internal/utf8internal
+  - language
+  - runes
+  - transform
+- name: gopkg.in/alexcesaro/quotedprintable.v3
+  version: 2caba252f4dc53eaf6b553000885530023f54623
+- name: gopkg.in/gomail.v2
+  version: 81ebce5c23dfd25c6c67194b37d3dd3f338c98b1
+testImports: []

@@ -3,9 +3,10 @@ package mail
 import (
 	"strings"
 
-	"github.com/leonklingele/github-release-checker/checker/github/tag"
-	"github.com/leonklingele/github-release-checker/logging"
 	"github.com/pkg/errors"
+	"github.com/sniperkit/github-release-checker/checker/vcs/github/repo/tag"
+	"github.com/sniperkit/github-release-checker/helper/logging"
+
 	gomail "gopkg.in/gomail.v2"
 )
 

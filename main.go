@@ -2,16 +2,26 @@ package main
 
 import (
 	"flag"
+	// "net/http"
 
-	"github.com/BurntSushi/toml"
-	"github.com/leonklingele/github-release-checker/checker"
-	logHandler "github.com/leonklingele/github-release-checker/checker/handlers/log"
-	mailHandler "github.com/leonklingele/github-release-checker/checker/handlers/mail"
-	"github.com/leonklingele/github-release-checker/config"
-	"github.com/leonklingele/github-release-checker/logging"
-	"github.com/leonklingele/github-release-checker/pathutil"
+	// notify
+	logHandler "github.com/sniperkit/github-release-checker/checker/handlers/log"
+	mailHandler "github.com/sniperkit/github-release-checker/checker/handlers/mail"
+
+	// app
+	"github.com/sniperkit/github-release-checker/checker"
+	"github.com/sniperkit/github-release-checker/config"
+
+	// persistent store
 	_ "github.com/mattn/go-sqlite3"
+	// pivot
+	// gorm
+
+	// helpers
+	"github.com/BurntSushi/toml"
 	"github.com/pkg/errors"
+	"github.com/sniperkit/github-release-checker/helper/logging"
+	"github.com/sniperkit/github-release-checker/utils/pathutil"
 )
 
 const (
@@ -40,6 +50,7 @@ func boot() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to annotate config file path")
 	}
+
 	var conf config.Config
 	if _, err := toml.DecodeFile(cfp, &conf); err != nil {
 		return errors.Wrap(err, "failed to load or parse config file")
@@ -56,6 +67,7 @@ func boot() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to create checker")
 	}
+
 	return c.Start()
 }
 
